@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>资讯库｜浙江省人工智能高质量发展工作图谱</title>
+<link rel="stylesheet" href="../vendor/modern-normalize.min.css">
+<link rel="stylesheet" href="../styles/tokens.css">
+<link rel="stylesheet" href="../styles/operations.css">
+<link rel="stylesheet" href="../styles/module-pages.css">
+<link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
+</head>
+<body class="list-page news-directory-page" data-list-page="news">
+<header class="ops-header">
+  <div class="ops-title"><span class="ops-mark">NEWS</span><div><small>NEWS DIRECTORY</small><h1>资讯库</h1></div></div>
+  <nav class="ops-crumb" aria-label="面包屑导航"><a href="../index.html">工作推进总览</a><span>／</span><strong>资讯库</strong></nav>
+</header>
+<main class="ops-shell">
+  <section class="ops-summary" aria-label="资讯库概览">
+    <div class="ops-summary-intro"><span>资讯监测台账</span><p>汇集全球、全国及浙江省人工智能产业动态，支持按范围、分类和日期快速检索。</p></div>
+    <div class="ops-metric"><strong id="newsTotalMetric">—</strong><span>资讯总数</span></div>
+    <div class="ops-metric"><strong id="newsDateMetric">—</strong><span>当前时间范围</span></div>
+    <div class="ops-metric"><strong id="newsScopeMetric">—</strong><span>覆盖范围</span></div>
+  </section>
+  <section class="ops-workspace news-workspace">
+    <aside class="ops-side">
+      <div class="ops-side-head"><h2>资讯范围</h2><span>三级分类</span></div>
+      <div class="ops-filter-list" id="newsScopeFilters"></div>
+      <div class="ops-side-head news-category-head"><h2>资讯分类</h2><span>主题筛选</span></div>
+      <div class="ops-filter-list" id="newsCategoryFilters"></div>
+    </aside>
+    <section class="ops-main news-main">
+      <div class="ops-main-head"><h2>资讯台账</h2><span id="newsResultHint">实时筛选</span></div>
+      <div class="ops-toolbar news-toolbar">
+        <label class="news-date-field">起始日期<input id="newsStartDate" type="date" aria-label="起始日期"></label>
+        <label class="news-date-field">结束日期<input id="newsEndDate" type="date" aria-label="结束日期"></label>
+        <button class="ops-refresh news-reset" id="newsReset" type="button"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> 重置</button>
+        <input class="ops-search" id="newsSearch" placeholder="搜索标题、摘要、来源" aria-label="搜索资讯">
+        <button class="ops-refresh trend-button" id="trendButton" type="button"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> 生成趋势总结</button>
+      </div>
+      <div id="newsTimeline" class="news-timeline"></div>
+    </section>
+  </section>
+</main>
+<div id="newsDrawer" class="news-drawer" hidden></div>
+<div id="trendModal" class="trend-modal" hidden></div>
+<script src="../js/demo-banner.js"></script>
+<script src="../data/news.js"></script>
+<script src="../js/state.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/news-page.js?v=20260830-1"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+// 由 base-dispatch.json 同步生成，支持 file:// 本地直接打开。
+window.BASE_DISPATCH_DATA = {
+  "source": "外部演示合成数据",
+  "asOf": "截至2026年06月",
+  "annualPlanHint": "演示数据，仅用于展示填报和进度功能。",
+  "bases": {
+    "1": {
+      "domain": "示例行业领域",
+      "direction": "示例应用验证方向",
+      "baselineSummary": "当前基础情况为合成示例内容。",
+      "actionTarget": "目标内容为合成示例，不代表真实项目。",
+      "highlights": [
+        {
+          "name": "算力服务能力",
+          "baseline": "当前值30",
+          "target": "目标值100",
+          "currentValue": 30,
+          "targetValue": 100,
+          "unit": "项",
+          "currentDisplay": "30项",
+          "targetDisplay": "100项",
+          "progress": 30
+        }
+      ]
+    }
+  }
+};

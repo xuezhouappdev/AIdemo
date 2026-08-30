@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1187" height="564" viewBox="0 0 1187 564" role="img" aria-label="浙江省及部分地市人工智能应用场景示意图">
+  <rect width="1187" height="564" fill="#ffffff"/>
+  <rect x="2" y="2" width="1183" height="560" fill="none" stroke="#93c5fd" stroke-width="3"/>
+  <g transform="translate(262 44)">
+    <path d="M250 34 334 70 397 139 379 207 431 265 389 348 316 377 257 443 178 410 126 344 71 309 91 236 57 172 114 119 169 103 199 50Z" fill="#dbeafe" stroke="#2563eb" stroke-width="5"/>
+    <path d="M114 119 199 184 250 34M91 236 199 184 257 443M397 139 300 231 431 265M126 344 214 293 389 348" fill="none" stroke="#93c5fd" stroke-width="3"/>
+    <circle cx="220" cy="240" r="12" fill="#1e40af"/>
+    <circle cx="220" cy="240" r="22" fill="none" stroke="#60a5fa" stroke-width="4" opacity=".55"/>
+    <text x="220" y="284" text-anchor="middle" fill="#1e40af" font-size="26" font-family="PingFang SC, sans-serif" font-weight="700">浙江省</text>
+  </g>
+  <g transform="translate(745 132)">
+    <rect width="330" height="78" rx="4" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+    <rect width="8" height="78" fill="#2563eb"/>
+    <text x="30" y="32" fill="#1e40af" font-size="21" font-family="PingFang SC, sans-serif" font-weight="700">重点地市</text>
+    <text x="30" y="59" fill="#64748b" font-size="16" font-family="PingFang SC, sans-serif">杭州市 · 金华市 · 绍兴市 · 嘉兴市</text>
+    <path d="M0 39H-145" stroke="#93c5fd" stroke-width="2"/>
+  </g>
+  <text x="594" y="525" text-anchor="middle" fill="#94a3b8" font-size="17" font-family="PingFang SC, sans-serif">浙江省及部分地市场景示意图</text>
+</svg>

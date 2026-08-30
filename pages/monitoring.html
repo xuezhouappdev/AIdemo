@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>人工智能统计监测情况｜浙江省人工智能高质量发展工作图谱</title>
+  <link rel="stylesheet" href="../vendor/modern-normalize.min.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="../styles/monitoring.css?v=202608301546">
+</head>
+<body class="monitoring-page">
+  <header class="monitor-header">
+    <div class="monitor-header-title">
+      <span class="monitor-mark" aria-hidden="true">MON</span>
+      <div><small>MONTHLY STATISTICAL MONITORING</small><h1>人工智能统计监测情况</h1></div>
+    </div>
+    <nav class="breadcrumb" aria-label="面包屑导航">
+      <a href="../index.html">工作推进总览</a><span>／</span><strong>统计监测</strong>
+    </nav>
+  </header>
+
+  <main class="monitor-shell">
+    <section class="monitor-hero" aria-labelledby="monitorTitle">
+      <div class="monitor-hero-copy">
+        <div class="monitor-eyebrow"><span></span>人工智能统计监测情况</div>
+        <h2 id="monitorTitle">月度运行态势驾驶舱</h2>
+        <div class="monitor-meta">
+          <span><i class="fa-regular fa-calendar"></i><b id="coverageText">6期数据</b></span>
+          <span><i class="fa-solid fa-location-dot"></i>3个地市</span>
+          <span><i class="fa-solid fa-layer-group"></i>2个示例领域</span>
+          <span class="warning"><i class="fa-solid fa-triangle-exclamation"></i>合成演示数据</span>
+        </div>
+      </div>
+      <div class="monitor-control-card">
+        <label for="monthSelect">当前监测期</label>
+        <select id="monthSelect" aria-label="选择监测月份"></select>
+        <div class="monitor-freshness">
+          <span>汇总校验</span><strong title="示例合计与示例分项汇总一致"><i></i>示例汇总一致</strong>
+        </div>
+        <div class="monitor-source-current">来源：<span id="currentSource">—</span></div>
+      </div>
+    </section>
+
+    <section class="kpi-grid" id="kpiGrid" aria-label="核心监测指标"></section>
+
+    <section class="dashboard-grid">
+      <article class="dash-card span-12 trend-card">
+        <header class="dash-card-head">
+          <div>
+            <span class="section-no">01</span>
+            <h3>全省累计指标走势</h3>
+            <p>2026年已报月份；柱顶标注同比增速</p>
+          </div>
+          <div class="metric-tabs" id="trendTabs" aria-label="趋势指标切换">
+            <button type="button" data-metric="revenue" class="active">营业收入</button>
+            <button type="button" data-metric="rd">研发费用</button>
+            <button type="button" data-metric="employment">平均用工</button>
+          </div>
+        </header>
+        <div class="chart-host" id="trendChart" aria-live="polite"></div>
+      </article>
+
+      <article class="dash-card span-7 ranking-card">
+        <header class="dash-card-head">
+          <div>
+            <span class="section-no">02</span>
+            <h3>地市规模排名</h3>
+            <p id="rankingSubtitle">营业收入，单位：亿元</p>
+          </div>
+          <label class="compact-select">排名指标
+            <select id="rankingMetric">
+              <option value="revenue">营业收入</option>
+              <option value="rd">研发费用</option>
+              <option value="employment">平均用工</option>
+              <option value="enterprises">企业数</option>
+            </select>
+          </label>
+        </header>
+        <div class="ranking-chart" id="rankingChart"></div>
+      </article>
+
+      <article class="dash-card span-5 sector-card">
+        <header class="dash-card-head">
+          <div>
+            <span class="section-no">03</span>
+            <h3>四领域营收结构</h3>
+            <p>营业收入占全省比重及同比增速</p>
+          </div>
+        </header>
+        <div id="sectorChart"></div>
+      </article>
+
+      <article class="dash-card span-12 heatmap-card">
+        <header class="dash-card-head">
+          <div>
+            <span class="section-no">04</span>
+            <h3>地市增长热力监测</h3>
+            <p>同比增速；蓝色表示增长，橙色表示下降，特殊状态按原表保留</p>
+          </div>
+        </header>
+        <div class="table-scroll"><table class="heatmap-table" id="heatmapTable"></table></div>
+      </article>
+
+      <article class="dash-card span-12 detail-table-card">
+        <header class="dash-card-head">
+          <div>
+            <span class="section-no">05</span>
+            <h3>地市监测明细</h3>
+            <p>金额单位：亿元；平均用工单位：万人</p>
+          </div>
+        </header>
+        <div class="table-scroll"><table class="detail-monitor-table" id="detailTable"></table></div>
+      </article>
+    </section>
+
+    <noscript><p class="noscript-note">请启用 JavaScript 查看统计监测图表。</p></noscript>
+  </main>
+
+  <script src="../js/demo-banner.js"></script>
+  <script src="../data/monitoring.js"></script>
+  <script src="../js/monitoring.js"></script>
+</body>
+</html>

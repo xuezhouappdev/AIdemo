@@ -1,0 +1,211 @@
+/* 数据资源模块页面：与新版工作推进总览保持相同的标题、容器与信息密度。 */
+:root {
+  --module-ink: #143d72;
+  --module-blue: #1765c4;
+  --module-line: #c8dff4;
+  --module-pale: #edf5fc;
+}
+
+body.list-page,
+body.task-page,
+body.policy-detail-page {
+  min-width: 1080px;
+  color: var(--module-ink);
+  background: var(--module-pale);
+  font-family: "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.list-page > .page-header,
+.task-page > .page-header,
+.policy-detail-page .page-header {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 70px;
+  margin: 0;
+  padding: 13px max(30px, calc((100% - 1420px) / 2));
+  color: #fff;
+  border: 0;
+  box-shadow: none;
+  background: linear-gradient(112deg, #103c8c, #1765c4 62%, #2584df);
+}
+
+.list-page > .page-header > div,
+.task-page > .page-header > div,
+.policy-detail-page .page-header > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 255px;
+  padding-left: 48px;
+}
+
+.list-page > .page-header > div::before,
+.task-page > .page-header > div::before,
+.policy-detail-page .page-header > div::before {
+  position: absolute;
+  left: 0;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .42);
+  border-radius: 7px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.list-page > .page-header > div::before { content: "DATA"; }
+.task-page > .page-header > div::before { content: "TASK"; }
+.policy-detail-page .page-header > div::before { content: "POLICY"; }
+
+.list-page > .page-header small,
+.task-page > .page-header small,
+.policy-detail-page .page-header small {
+  position: absolute;
+  top: -14px;
+  left: 48px;
+  display: block;
+  margin: 0;
+  color: #cce5ff;
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+}
+
+.list-page > .page-header h1,
+.task-page > .page-header h1,
+.policy-detail-page .page-header h1 {
+  margin: 5px 0 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: 1px;
+}
+
+.list-page .breadcrumb,
+.task-page .breadcrumb,
+.policy-detail-page .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #d6ebff;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.list-page .breadcrumb a,
+.task-page .breadcrumb a,
+.policy-detail-page .breadcrumb a {
+  padding: 0;
+  color: #fff;
+  border: 0;
+  background: transparent;
+  text-decoration: none;
+}
+
+.list-page .breadcrumb a:hover,
+.task-page .breadcrumb a:hover,
+.policy-detail-page .breadcrumb a:hover { text-decoration: underline; }
+
+.list-page .breadcrumb strong,
+.task-page .breadcrumb strong,
+.policy-detail-page .breadcrumb strong { color: #fff; }
+
+.list-page-content,
+.task-page-content,
+.policy-detail-page .detail-shell {
+  width: min(1420px, calc(100% - 60px));
+  min-height: calc(100vh - 112px);
+  margin: 18px auto 38px;
+  border: 1px solid var(--module-line);
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 9px 24px rgba(21, 78, 140, .07);
+}
+
+.list-page-content .filters,
+.task-page-content .filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: none;
+  min-height: 58px;
+  margin: 0;
+  padding: 11px 16px;
+  border-bottom: 1px solid #dfebf6;
+  background: #f8fbff;
+}
+
+.list-page-content .filters select,
+.list-page-content .filters input,
+.task-page-content .filters select,
+.task-page-content .filters input {
+  min-height: 34px;
+  color: #315c8b;
+  border: 1px solid #c9ddf0;
+  border-radius: 4px;
+  background: #fff;
+  outline: none;
+}
+
+.list-page-content .filters select,
+.task-page-content .filters select { padding: 0 28px 0 10px; }
+.list-page-content .filters input,
+.task-page-content .filters input { min-width: 260px; padding: 0 11px; }
+
+.list-page-content .filters select:focus,
+.list-page-content .filters input:focus,
+.task-page-content .filters select:focus,
+.task-page-content .filters input:focus {
+  border-color: #3483d8;
+  box-shadow: 0 0 0 3px rgba(52, 131, 216, .12);
+}
+
+.list-page-content .list-body,
+.task-page-content .task-list { padding: 0 16px 16px; }
+.list-body > .list-head { top: 0; min-height: 39px; color: #5c7b9b; background: #f4f9fe; }
+#listRows { border-color: #d5e5f4; background: #eaf2fa; }
+.list-row { border-bottom-color: #e1edf7; }
+.list-summary > div { color: #476b8e; border-right-color: #e6eff7; }
+.list-summary > div.row-title { color: #153f78; }
+.list-row[data-detail-href]:hover,
+.list-row[data-detail-href]:focus-visible { background: #f4f9ff; box-shadow: inset 3px 0 0 #2674d6; }
+.list-row[data-detail-href]:hover .row-title,
+.list-row[data-detail-href]:focus-visible .row-title { color: #1765c4; }
+.news-timeline { padding: 0 16px 18px; }
+.news-stats { color: #60809f; border-color: #d9e8f5; background: #f5faff; }
+.news-month-head { color: #164982; border-color: #cfe1f3; }
+.news-item { border-color: #d8e8f5; background: #fff; box-shadow: 0 5px 14px rgba(31, 83, 138, .05); }
+.news-item:hover { border-color: #8cbce9; box-shadow: 0 8px 20px rgba(31, 83, 138, .1); }
+
+.task-page .list-head,
+.task-page .task-summary { grid-template-columns: var(--task-grid-columns); }
+.task-page .importance-cell { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 4px; }
+.task-page .importance-cell .tag { white-space: nowrap; }
+.task-page #taskListHead [data-sort-key] { cursor: pointer; user-select: none; }
+.task-page #taskListHead [data-sort-key]:hover { background: #bfdbfe; }
+.task-page .sort-indicator { margin-left: 4px; color: #2563eb; font-size: 11px; }
+
+.policy-detail-page .detail-shell { padding: 0; border: 0; background: transparent; box-shadow: none; }
+.policy-detail-page .policy-detail-hero,
+.policy-detail-page .policy-detail-card {
+  border-color: var(--module-line);
+  box-shadow: 0 9px 24px rgba(21, 78, 140, .07);
+}
+
+@media (max-width: 1180px) {
+  .list-page > .page-header,
+  .task-page > .page-header,
+  .policy-detail-page .page-header { width: 1080px; padding-left: 22px; padding-right: 22px; }
+
+  .list-page-content,
+  .task-page-content,
+  .policy-detail-page .detail-shell { width: 1040px; margin-left: 20px; margin-right: 20px; }
+}

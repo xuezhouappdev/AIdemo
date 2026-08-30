@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>智能问答｜浙江省人工智能产业链图谱</title>
+<link rel="stylesheet" href="../vendor/modern-normalize.min.css">
+<style>
+:root { --wb-navy:#103f92; --wb-blue:#2674d6; --wb-ink:#173e6f; --wb-muted:#6b86a3; --wb-line:#c8dff4; --wb-bg:#edf5fc; --wb-pale:#f6faff; --ai-user-bg:#e8f2fd; --ai-assist-bg:#fff; --ai-assist-border:#c7ddf0; --ai-user-border:#b0cef5; }
+* { box-sizing:border-box; }
+body { margin:0; min-width:1180px; color:var(--wb-ink); background:var(--wb-bg); font-family:"Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; }
+button,input,select,textarea { font:inherit; }
+
+/* 头部 */
+.ai-header { display:flex; align-items:center; justify-content:space-between; min-height:68px; padding:13px max(30px,calc((100% - 1480px) / 2)); color:#fff; background:linear-gradient(112deg,#103c8c,#1765c4 62%,#2584df); }
+.ai-brand { display:flex; align-items:center; gap:12px; }
+.ai-mark { display:grid; width:38px; height:38px; place-items:center; border:1px solid rgba(255,255,255,.42); border-radius:7px; font-size:12px; font-weight:800; background:rgba(255,255,255,.15); }
+.ai-brand small { display:block; color:#cce5ff; font-size:9px; letter-spacing:1.4px; }
+.ai-brand h1 { margin:4px 0 0; font-size:20px; letter-spacing:1px; }
+.ai-header-right { display:flex; align-items:center; gap:14px; color:#d8ecff; font-size:12px; }
+.ai-header-right a { padding:7px 11px; color:#fff; border:1px solid rgba(255,255,255,.35); text-decoration:none; }
+.ai-header-right a:hover { background:rgba(255,255,255,.12); }
+.ai-model-select { padding:6px 9px; color:#fff; border:1px solid rgba(255,255,255,.4); border-radius:5px; background:rgba(255,255,255,.12); font-size:12px; outline:none; }
+.ai-model-select option { color:#173e6f; background:#fff; }
+
+/* 主体布局 */
+.ai-shell { display:grid; grid-template-columns:210px minmax(0,1fr); gap:16px; width:min(1480px,calc(100% - 60px)); margin:16px auto 40px; }
+
+/* 知识库侧栏 */
+.ai-kb-panel { min-height:calc(100vh - 100px); padding:13px 10px; border:1px solid var(--wb-line); background:#fff; box-shadow:0 8px 22px rgba(21,78,140,.06); }
+.kb-caption { padding:4px 8px 10px; color:#7991aa; font-size:11px; font-weight:700; letter-spacing:1px; }
+.kb-section-title { margin:12px 0 5px; padding:0 8px; color:#7a96b4; font-size:10px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; }
+.kb-item { display:flex; align-items:center; gap:8px; padding:8px 10px; margin-bottom:3px; border-radius:5px; cursor:pointer; font-size:13px; color:#315c8b; transition:.15s; border:1px solid transparent; }
+.kb-item:hover { background:#f2f8fe; border-color:#c8ddf0; }
+.kb-item input[type="checkbox"] { width:14px; height:14px; accent-color:var(--wb-blue); cursor:pointer; flex-shrink:0; }
+.kb-item.selected { background:#e8f2fd; border-color:#b0cef5; color:#103f92; font-weight:600; }
+.kb-item .kb-count { margin-left:auto; font-size:10px; color:#8aa0b6; background:#f0f5fb; padding:1px 5px; border-radius:9px; }
+.kb-divider { margin:10px 8px; border:none; border-top:1px solid #e1edf7; }
+.kb-footer-tip { margin-top:18px; padding:10px 8px; color:#68839f; border-left:3px solid #55a0e9; background:#f3f8fe; font-size:11px; line-height:1.6; }
+
+/* 对话主区 */
+.ai-chat-area { display:flex; flex-direction:column; border:1px solid var(--wb-line); background:#fff; box-shadow:0 8px 22px rgba(21,78,140,.05); overflow:hidden; }
+
+/* 舞台容器：欢迎屏与消息流互斥占满全部高度 */
+.ai-stage { position:relative; flex:1; min-height:0; display:flex; flex-direction:column; }
+
+/* 已发起对话后，消息流覆盖欢迎屏所在的完整舞台 */
+.ai-chat-area.has-conversation .ai-welcome { display:none !important; }
+.ai-chat-area.has-conversation .ai-messages { display:flex !important; }
+
+/* 欢迎屏：居中、全宽占满整个舞台 */
+.ai-welcome { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; color:#6b86a3; text-align:center; background:#fff; }
+.ai-welcome-icon { width:64px; height:64px; border-radius:14px; background:linear-gradient(135deg,#1b62bb,#2674d6); display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
+.ai-welcome-icon svg { width:34px; height:34px; fill:#fff; }
+.ai-welcome h2 { margin:0 0 10px; color:#103f92; font-size:22px; }
+.ai-welcome p { margin:0; font-size:13px; line-height:1.7; max-width:420px; }
+.ai-suggestions { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; justify-content:center; }
+.ai-suggestion { padding:7px 13px; border:1px solid #c7ddf0; border-radius:18px; background:#f3f8fe; color:#2767b4; font-size:12px; cursor:pointer; transition:.15s; }
+.ai-suggestion:hover { background:#e8f2fd; border-color:#2674d6; color:#103f92; }
+
+/* 消息区 */
+.ai-messages { flex:1; overflow-y:auto; padding:20px 24px; display:flex; flex-direction:column; gap:18px; }
+.ai-msg { display:flex; gap:12px; max-width:82%; }
+.ai-msg.user { align-self:flex-end; flex-direction:row-reverse; }
+.ai-msg-avatar { width:34px; height:34px; border-radius:8px; flex-shrink:0; display:grid; place-items:center; font-size:13px; font-weight:800; }
+.ai-msg.user .ai-msg-avatar { background:#2674d6; color:#fff; }
+.ai-msg.assistant .ai-msg-avatar { background:#1a8540; color:#fff; }
+.ai-msg-body { padding:11px 14px; border-radius:10px; font-size:13.5px; line-height:1.75; }
+.ai-msg.user .ai-msg-body { background:#e8f2fd; border:1px solid #b0cef5; border-bottom-right-radius:2px; color:#173e6f; }
+.ai-msg.assistant .ai-msg-body { background:#f8fbff; border:1px solid #c7ddf0; border-bottom-left-radius:2px; color:#173e6f; }
+.ai-msg-meta { margin-top:4px; padding:0 3px; font-size:10px; color:#8aa0b6; }
+.ai-msg.user .ai-msg-meta { text-align:right; }
+.ai-msg-tool { margin-top:8px; padding-top:8px; border-top:1px solid #e1edf7; font-size:12px; color:#5b7896; }
+.ai-msg-tool-title { font-weight:700; color:#2674d6; margin-bottom:4px; }
+.ai-msg-tool-items { display:flex; flex-wrap:wrap; gap:4px; }
+.ai-msg-tool-tag { padding:2px 7px; background:#e8f2fd; border:1px solid #b0cef5; border-radius:10px; color:#2767b4; font-size:10px; }
+
+/* 引用来源块 */
+.ai-msg-sources { margin-top:8px; }
+.ai-source-item { padding:7px 9px; background:#f4f9fe; border-left:3px solid #2674d6; margin-top:5px; border-radius:0 5px 5px 0; }
+.ai-source-item cite { display:block; font-style:normal; font-size:11px; color:#2674d6; font-weight:700; margin-bottom:2px; }
+.ai-source-item p { margin:0; font-size:12px; color:#315c8b; line-height:1.6; }
+
+/* 思考过程 */
+.ai-thinking { padding:10px 13px; background:#f3f8fe; border:1px solid #dceaf6; border-radius:8px; margin-bottom:8px; font-size:12px; color:#5b7896; line-height:1.7; }
+.ai-thinking-header { display:flex; align-items:center; gap:6px; font-weight:700; color:#2674d6; margin-bottom:5px; font-size:11px; }
+.ai-thinking-dots { display:inline-flex; gap:3px; }
+.ai-thinking-dots span { width:4px; height:4px; border-radius:50%; background:#2674d6; animation:thinkingPulse 1.2s infinite; }
+.ai-thinking-dots span:nth-child(2){animation-delay:.2s}
+.ai-thinking-dots span:nth-child(3){animation-delay:.4s}
+@keyframes thinkingPulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+
+/* 输入区 */
+.ai-input-bar { padding:14px 18px 16px; border-top:1px solid #e1edf7; background:#fafcff; }
+.ai-kb-chips { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; font-size:11px; }
+.ai-kb-chip { padding:3px 9px; background:#e8f2fd; border:1px solid #b0cef5; border-radius:12px; color:#2767b4; }
+.ai-kb-chip-empty { color:#8aa0b6; font-style:italic; }
+.ai-input-row { display:flex; gap:10px; align-items:flex-end; }
+.ai-textarea-wrap { flex:1; position:relative; }
+.ai-textarea { width:100%; min-height:42px; max-height:160px; padding:9px 12px; border:1px solid #c7ddf0; border-radius:8px; background:#fff; color:#315c8b; font-size:13px; line-height:1.6; resize:none; outline:none; transition:.15s; field-sizing:content; }
+.ai-textarea:focus { border-color:#2674d6; box-shadow:0 0 0 3px rgba(38,116,214,.1); }
+.ai-send-btn { width:42px; height:42px; border:none; border-radius:8px; background:#2674d6; color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:.15s; }
+.ai-send-btn:hover { background:#185bab; }
+.ai-send-btn:disabled { background:#b0cef5; cursor:not-allowed; }
+.ai-send-btn svg { width:18px; height:18px; fill:#fff; }
+.ai-input-hint { margin-top:6px; font-size:10px; color:#8aa0b6; text-align:right; }
+
+/* 清空按钮 */
+.ai-clear-btn { padding:5px 10px; border:1px solid #c7ddef; border-radius:4px; background:#f5faff; color:#527593; font-size:11px; cursor:pointer; transition:.15s; }
+.ai-clear-btn:hover { background:#e8f2fd; border-color:#2674d6; color:#2674d6; }
+
+/* Toast */
+.ai-toast { position:fixed; right:26px; bottom:24px; padding:12px 17px; color:#fff; background:#123d78; box-shadow:0 9px 22px rgba(6,43,85,.2); opacity:0; transform:translateY(16px); transition:.2s ease; border-radius:6px; font-size:13px; z-index:50; }
+.ai-toast.show { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="ai-header">
+  <div class="ai-brand">
+    <div class="ai-mark">AI</div>
+    <div>
+      <small>KNOWLEDGE Q&amp;A</small>
+      <h1>智能问答</h1>
+    </div>
+  </div>
+  <div class="ai-header-right">
+    <select class="ai-model-select" id="modelSelect" title="选择AI模型">
+      <option value="qwen-plus">通义千问 Plus</option>
+      <option value="qwen-long">通义千问 Long</option>
+      <option value="qwen-max">通义千问 Max</option>
+      <option value="deepseek-v3">DeepSeek V3</option>
+      <option value="deepseek-r1">DeepSeek R1（推理）</option>
+      <option value="gpt-4o">GPT-4o</option>
+    </select>
+    <button class="ai-clear-btn" id="clearChat">清空对话</button>
+    <a href="../index.html">返回工作图谱</a>
+  </div>
+</header>
+
+<div class="ai-shell">
+  <!-- 知识库侧栏 -->
+  <aside class="ai-kb-panel" aria-label="知识库选择">
+    <div class="kb-caption">知识库范围</div>
+
+    <div class="kb-section-title">工作体系</div>
+    <label class="kb-item" data-kb="policies">
+      <input type="checkbox" checked> 政策库
+      <span class="kb-count" id="cnt-policies">—</span>
+    </label>
+    <label class="kb-item" data-kb="tasks">
+      <input type="checkbox" checked> 任务库
+      <span class="kb-count" id="cnt-tasks">—</span>
+    </label>
+    <label class="kb-item" data-kb="projects">
+      <input type="checkbox" checked> 项目库
+      <span class="kb-count" id="cnt-projects">—</span>
+    </label>
+    <label class="kb-item" data-kb="scenes">
+      <input type="checkbox" checked> 场景库
+      <span class="kb-count" id="cnt-scenes">—</span>
+    </label>
+    <label class="kb-item" data-kb="meetings">
+      <input type="checkbox" checked> 会议库
+      <span class="kb-count" id="cnt-meetings">—</span>
+    </label>
+    <label class="kb-item" data-kb="research">
+      <input type="checkbox" checked> 调研库
+      <span class="kb-count" id="cnt-research">—</span>
+    </label>
+
+    <hr class="kb-divider">
+
+    <div class="kb-section-title">资源体系</div>
+    <label class="kb-item" data-kb="platforms">
+      <input type="checkbox" checked> 平台库
+      <span class="kb-count" id="cnt-platforms">—</span>
+    </label>
+    <label class="kb-item" data-kb="experts">
+      <input type="checkbox" checked> 专家库
+      <span class="kb-count" id="cnt-experts">—</span>
+    </label>
+    <label class="kb-item" data-kb="companies">
+      <input type="checkbox" checked> 企业库
+      <span class="kb-count" id="cnt-companies">—</span>
+    </label>
+    <label class="kb-item" data-kb="news">
+      <input type="checkbox" checked> 资讯库
+      <span class="kb-count" id="cnt-news">—</span>
+    </label>
+    <label class="kb-item" data-kb="objects">
+      <input type="checkbox" checked> 目标体系
+      <span class="kb-count" id="cnt-objects">—</span>
+    </label>
+
+    <hr class="kb-divider">
+
+    <div class="kb-section-title">统计数据</div>
+    <label class="kb-item" data-kb="monitoring">
+      <input type="checkbox"> 监测数据
+      <span class="kb-count" id="cnt-monitoring">—</span>
+    </label>
+
+    <div class="kb-footer-tip">
+      勾选知识库后，AI 将仅在所选范围内检索回答。未勾选的知识库不参与本次问答。
+    </div>
+  </aside>
+
+  <!-- 对话区 -->
+  <section class="ai-chat-area" id="chatArea">
+    <!-- 对话主视图（欢迎屏与消息列表二选一展示，互斥） -->
+    <div class="ai-stage" id="aiStage">
+      <!-- 欢迎屏：居中、全宽，仅在未发起对话时显示 -->
+      <div class="ai-welcome" id="welcomeScreen">
+        <div class="ai-welcome-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+        </div>
+        <h2>欢迎使用智能问答</h2>
+        <p>我可以基于您勾选的知识库，回答关于浙江省人工智能产业链的政策、任务、项目、场景等问题。</p>
+        <div class="ai-suggestions">
+          <button class="ai-suggestion" data-q="浙江省人工智能近期有哪些重点支持政策？">近期重点支持政策</button>
+          <button class="ai-suggestion" data-q="重大项目推进情况如何？">重大项目进展</button>
+          <button class="ai-suggestion" data-q="应用场景落地情况最好的领域是哪些？">场景落地情况</button>
+          <button class="ai-suggestion" data-q="产业链图谱的核心节点企业有哪些？">核心节点企业</button>
+        </div>
+      </div>
+
+      <!-- 消息列表：上下布局（用户在上、AI 回复在下），仅在发起对话后显示 -->
+      <div class="ai-messages" id="messageList" style="display:none"></div>
+    </div>
+
+    <!-- 输入区（始终位于底部） -->
+    <div class="ai-input-bar">
+      <div class="ai-kb-chips" id="kbChips">
+        <span class="ai-kb-chip-empty">已选全部知识库</span>
+      </div>
+      <div class="ai-input-row">
+        <div class="ai-textarea-wrap">
+          <textarea
+            class="ai-textarea"
+            id="msgInput"
+            placeholder="输入问题，例如：杭州人工智能算力平台建设进展如何？"
+            rows="1"
+            maxlength="2000"
+          ></textarea>
+        </div>
+        <button class="ai-send-btn" id="sendBtn" title="发送（Ctrl+Enter）">
+          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </div>
+      <div class="ai-input-hint">按 Ctrl+Enter 发送 · Enter 换行</div>
+    </div>
+  </section>
+</div>
+
+<div class="ai-toast" id="toast"></div>
+
+<script src="../data/policies.js"></script>
+<script src="../data/tasks.js"></script>
+<script src="../data/projects.js"></script>
+<script src="../data/scenes.js"></script>
+<script src="../data/experts.js"></script>
+<script src="../data/news.js"></script>
+<script src="../data/platforms.js"></script>
+<script src="../data/objects.js"></script>
+<script src="../js/chat.js"></script>
+</body>
+</html>

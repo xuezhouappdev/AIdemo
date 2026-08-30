@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>工作推进工作台｜浙江省人工智能高质量发展工作图谱</title>
+<link rel="stylesheet" href="../vendor/modern-normalize.min.css">
+<link rel="stylesheet" href="../styles/workbench.css">
+</head>
+<body data-workbench-page>
+<header class="admin-header">
+  <div class="admin-brand"><span class="admin-mark">WB</span><div><small>ADMIN WORKBENCH</small><h1>工作推进工作台</h1></div></div>
+  <div class="admin-header-right"><span class="admin-status"><i></i>后台工作模式</span><a href="../index.html">返回工作推进总览</a></div>
+</header>
+<main class="admin-shell">
+  <aside class="admin-sidebar" aria-label="后台模块导航">
+    <div class="sidebar-caption">工作管理</div>
+    <button class="admin-nav active" data-module="overview"><span>总览</span><small>WORK OVERVIEW</small></button>
+    <button class="admin-nav" data-module="tasks"><span>任务调度</span><small>TASK DISPATCH</small></button>
+    <button class="admin-nav" data-module="projects"><span>项目调度</span><small>PROJECT TRACKING</small></button>
+    <button class="admin-nav" data-module="platforms"><span>平台调度</span><small>PLATFORM COORDINATION</small></button>
+    <button class="admin-nav" data-module="scenes"><span>场景遴选</span><small>SCENE SELECTION</small></button>
+    <button class="admin-nav" data-module="meetings"><span>会议管理</span><small>MEETING MANAGEMENT</small></button>
+    <button class="admin-nav" data-module="research"><span>调研管理</span><small>RESEARCH MANAGEMENT</small></button>
+    <div class="sidebar-divider" style="margin:10px 8px;border-top:1px solid #e1edf7"></div>
+    <div class="sidebar-caption">辅助工具</div>
+    <button class="admin-nav" data-module="chat" id="chatNavBtn"><span>智能问答</span><small>AI KNOWLEDGE Q&amp;A</small></button>
+    <button class="admin-nav admin-nav-disabled" type="button" disabled aria-disabled="true"><span>智能体广场</span><small>AGENT MARKETPLACE</small></button>
+  </aside>
+  <section class="admin-content" id="workbenchContent"></section>
+</main>
+<script src="../data/policies.js"></script>
+<script src="../data/tasks.js"></script>
+<script src="../data/projects.js"></script>
+<script src="../data/scenes.js"></script>
+<script src="../data/experts.js"></script>
+<script src="../data/news.js"></script>
+<script src="../data/platforms.js"></script>
+<script src="../data/objects.js"></script>
+<script src="../data/monitoring.js"></script>
+<script src="../js/workbench.js"></script>
+</body>
+</html>

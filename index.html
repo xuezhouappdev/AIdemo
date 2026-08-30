@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>浙江省人工智能高质量发展工作图谱</title>
+  <style>
+    :root { --ink:#123967; --blue:#1667c8; --blue2:#0b4ea2; --line:#c7dff5; --pale:#f3f8fe; --muted:#6583a5; --teal:#007f84; --red:#df4f55; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-width:1180px; color:var(--ink); font-family:"Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; background:#e8f2fc; }
+    button { font:inherit; }
+    button,a[href],[role="link"],[tabindex] { cursor:pointer; }
+    .shell { width:min(1760px,calc(100% - 56px)); margin:28px auto 42px; }
+    .masthead { min-height:112px; padding:23px 34px 20px; position:relative; overflow:hidden; color:white; background:linear-gradient(116deg,#0d3d8d 0%,#155fc3 58%,#2485e4 100%); border-radius:10px; box-shadow:0 12px 32px rgba(17,68,129,.18); }
+    .masthead::after { content:""; position:absolute; width:360px; height:360px; right:-50px; top:-220px; border:1px solid rgba(255,255,255,.22); border-radius:50%; box-shadow:0 0 0 34px rgba(255,255,255,.05),0 0 0 70px rgba(255,255,255,.04); }
+    .masthead h1 { margin:0; font-family:"Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-size:32px; line-height:1.2; font-weight:700; letter-spacing:2px; }
+    .masthead p { margin:10px 0 0; color:#cce5ff; font:600 11px "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; letter-spacing:3px; }
+    .status { position:absolute; right:32px; top:43px; z-index:1; display:flex; align-items:center; gap:9px; color:#dcedff; font-size:13px; }
+    .pulse { width:8px; height:8px; border-radius:50%; background:#70e0bf; box-shadow:0 0 0 5px rgba(112,224,191,.17); }
+    .ticker { margin-top:14px; height:60px; display:grid; grid-template-columns:216px 1fr 88px; align-items:center; border:1px solid #a9ccef; border-radius:8px; overflow:hidden; background:white; box-shadow:0 7px 18px rgba(36,90,147,.06); }
+    .ticker-label { align-self:stretch; padding:10px 20px; color:white; background:var(--blue2); display:flex; flex-direction:column; justify-content:center; }
+    .ticker-label strong { font-size:17px; letter-spacing:1px; }.ticker-label span { margin-top:3px; color:#bcd9fa; font:10px "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; letter-spacing:1px; }
+    .newsline { overflow:hidden; padding:0 21px; white-space:nowrap; color:#507393; font-size:14px; }.newsline b { color:#143e78; }.newsline i { display:inline-block; width:5px; height:5px; margin:0 26px 2px; border-radius:50%; background:#3e91ed; }.more { border:0; border-left:1px solid #d5e6f7; height:100%; color:#1667c8; background:white; cursor:pointer; font-weight:700; }.more:hover { background:#f3f8fe; }
+    .framework { margin-top:14px; min-height:70px; padding:10px 17px; display:grid; grid-template-columns:180px repeat(4,1fr); align-items:stretch; gap:0; background:#f9fcff; border:1px solid #c9e0f5; border-radius:8px; }
+    .framework-title { display:flex; align-items:center; gap:10px; padding-left:10px; color:#123f7d; font-weight:800; font-size:14px; }.framework-mark { display:grid; place-items:center; width:38px; height:38px; color:white; background:#1965bf; border-radius:7px; font-size:14px; }
+    .frame-item { position:relative; padding:8px 18px 7px 24px; border-left:1px solid #d8e7f5; }.frame-item em { display:block; color:#1767c9; font-style:normal; font:700 14px "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; }.frame-item strong { display:block; margin-top:2px; font-size:14px; }.frame-item small { display:block; margin-top:2px; color:#6d89a6; font-size:11px; }
+    .system-nav { margin:14px 0; display:grid; grid-template-columns:repeat(4,1fr); overflow:hidden; border:1px solid #bdd8f1; border-radius:8px; background:white; }.system-nav button { position:relative; border:0; border-right:1px solid #d9e8f6; padding:14px; color:#345778; background:transparent; font-weight:700; cursor:pointer; }.system-nav button:last-child { border-right:0; }.system-nav button:hover { background:#f2f8fe; }.system-nav button.active { color:#0e54a9; background:#e9f3ff; }.system-nav button.active::after { content:""; position:absolute; right:26px; bottom:0; left:26px; height:3px; background:#1767c8; }
+    .workspace { display:grid; grid-template-columns:300px minmax(580px,1fr) 300px; gap:14px; }.panel { min-height:574px; overflow:hidden; border:1px solid #bad7f1; border-radius:8px; background:linear-gradient(180deg,#fff 0%,#f6faff 100%); box-shadow:0 8px 22px rgba(32,82,132,.06); }.panel-head { height:60px; display:flex; align-items:center; justify-content:space-between; padding:0 20px; color:white; background:linear-gradient(104deg,#103f92,#237cdf); }.panel-head h2 { margin:0; font-size:21px; letter-spacing:1px; }.panel-head span { color:#bfdbff; font-size:11px; }
+    .province-tabs { display:flex; gap:7px; padding:16px 16px 10px; }.province-tabs button { flex:1; min-width:0; border:1px solid #c9ddf4; border-radius:5px; padding:8px 2px; background:#f3f8fe; color:#2767b4; font-size:13px; font-weight:700; cursor:pointer; }.province-tabs button:hover { color:white; border-color:#2674d6; background:#2674d6; }.province-tabs button.active { color:white; border-color:#2674d6; background:#2674d6; }
+    .org-list { padding:7px 16px; }.org { position:relative; min-height:70px; display:grid; grid-template-columns:35px 1fr; align-items:center; gap:11px; padding:11px; background:#f3f8ff; border:1px solid #c9e0f7; border-radius:7px; }.org + .org { margin-top:24px; }.org + .org::before { content:""; position:absolute; width:2px; height:24px; left:28px; bottom:100%; background:#7eb7ed; }.org + .org::after { content:""; position:absolute; left:24px; bottom:calc(100% - 2px); border:5px solid transparent; border-top-color:#7eb7ed; }.ordinal { display:grid; place-items:center; width:34px; height:34px; color:white; border-radius:50%; background:#2674d6; font:700 16px "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; }.org strong { font-size:15px; }.org small { display:block; margin-top:4px; color:#6c87a5; font-size:12px; line-height:1.5; }.org.assist { background:#eaf4ff; }.side-note { margin:17px 16px; padding:12px 13px; color:#637f9d; border-left:3px solid #50a0ef; background:#f2f8ff; font-size:12px; line-height:1.7; }
+    .core { position:relative; }.core-top { display:flex; align-items:end; justify-content:space-between; padding:18px 26px 12px; }.core-top h2 { margin:0; color:#103f8d; font-size:25px; letter-spacing:1px; }.core-top p { margin:7px 0 0; color:#6c87a3; font-size:12px; }.view-tag { padding:7px 10px; color:#2369b9; border:1px solid #b8d6f3; border-radius:4px; background:#edf6ff; font-size:12px; }
+    .diagram { height:432px; position:relative; margin:0 22px; display:grid; place-items:center; overflow:hidden; }.ring { position:absolute; width:342px; height:342px; border:16px solid #dfedfb; border-radius:50%; }.ring::after { content:""; position:absolute; inset:11px; border:2px dashed #74b5ee; border-radius:50%; }.core-box { z-index:2; width:198px; padding:23px 12px 18px; text-align:center; color:#103d7a; border:2px solid #66aaf0; border-radius:32px; background:linear-gradient(145deg,#e9f5ff,#c5e2ff); box-shadow:0 8px 18px rgba(34,111,189,.12); }.core-symbol { display:grid; place-items:center; width:40px; height:40px; margin:0 auto 9px; color:#1c69c8; border-radius:50%; background:white; font:700 19px "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; }.core-box strong { font-size:19px; }.core-box span { display:block; margin-top:7px; color:#4f82b4; font-size:12px; }
+    .diagram.map-view { display:block; padding:12px; background:#f8fbff; }.diagram.map-view::before,.diagram.map-view::after { display:none; }.diagram.map-view .map-view-image { display:block; width:100%; height:100%; object-fit:contain; }
+    .node { position:absolute; z-index:3; width:75px; height:75px; display:grid; place-items:center; color:#1459ad; border:3px solid #4d99e8; border-radius:50%; background:white; font-size:16px; font-weight:800; cursor:pointer; transition:.18s ease; }.node:hover,.node.selected { color:white; background:#2379d7; transform:scale(1.07); box-shadow:0 0 0 6px rgba(35,121,215,.11); }.node.n1 { top:10px; left:calc(50% - 37px); }.node.n2 { top:104px; right:calc(50% - 208px); }.node.n3 { right:calc(50% - 170px); bottom:12px; }.node.n4 { bottom:12px; left:calc(50% - 170px); }.node.n5 { top:104px; left:calc(50% - 208px); }.node-tip { position:absolute; padding:5px 9px; color:#2869b4; border:1px solid #bfdcf7; border-radius:20px; background:#eef7ff; font-size:11px; }.tip1{top:77px;left:calc(50% - 50px)}.tip2{top:139px;right:calc(50% - 315px)}.tip3{bottom:83px;right:calc(50% - 250px)}.tip4{bottom:83px;left:calc(50% - 250px)}.tip5{top:139px;left:calc(50% - 315px)}
+    .core-footer { display:flex; align-items:center; justify-content:center; gap:8px; padding:15px 22px; border-top:1px solid #deebf7; color:#5f7e9f; font-size:12px; }.core-footer b { color:#1767c8; }
+    .entry-list { padding:16px; }.entry { width:100%; display:grid; grid-template-columns:35px 1fr 16px; align-items:center; min-height:53px; margin-bottom:10px; padding:8px 12px; text-align:left; color:#123d79; border:1px solid #cbe0f6; border-radius:6px; background:#f5f9fe; cursor:pointer; transition:.18s; }.entry:hover { border-color:#6ba7e5; background:#eaf4ff; transform:translateX(-3px); }.entry-num { color:#1a66bf; font:700 13px "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; }.entry-arrow { color:#4d88c9; font-size:19px; }.entry strong { font-size:15px; }.entry small { display:block; margin-top:2px; color:#7690aa; font-size:11px; }
+    .resources { margin-top:14px; overflow:hidden; border:1px solid #b9d8f1; border-radius:8px; background:white; box-shadow:0 8px 22px rgba(32,82,132,.06); }.resources-inner { display:grid; grid-template-columns:216px 1fr; min-height:144px; }.resource-title { position:relative; display:flex; flex-direction:column; justify-content:center; padding-left:28px; color:white; background:linear-gradient(135deg,#155aa8,#2686d6); }.resource-title::after { content:""; position:absolute; right:-18px; top:0; border-top:72px solid transparent; border-bottom:72px solid transparent; border-left:18px solid #2686d6; }.resource-title strong { font-size:21px; }.resource-title span { margin-top:7px; color:#ccffff; font:10px "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; letter-spacing:1px; }.resource-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; align-content:center; padding:17px 27px 17px 40px; }.resource { min-height:43px; border:1px solid #c8e0f4; border-radius:5px; color:#1a4989; background:#f3f8fe; font-weight:700; cursor:pointer; }.resource:hover { color:white; border-color:#2276d1; background:#2276d1; }
+    .public-ai { position:fixed; z-index:20; right:28px; bottom:28px; display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+    .public-ai-panel { width:294px; overflow:hidden; border:1px solid #b8d9f5; border-radius:8px; background:#fff; box-shadow:0 16px 38px rgba(13,62,122,.22); opacity:0; pointer-events:none; transform:translateY(12px) scale(.97); transform-origin:right bottom; transition:.2s ease; }
+    .public-ai.open .public-ai-panel { opacity:1; pointer-events:auto; transform:translateY(0) scale(1); }
+    .public-ai-head { display:flex; align-items:center; justify-content:space-between; padding:13px 14px; color:#fff; background:linear-gradient(112deg,#1264c4,#1998ae); }.public-ai-brand { display:flex; align-items:center; gap:9px; }.public-ai-mark { display:grid; width:30px; height:30px; place-items:center; border:1px solid rgba(255,255,255,.5); border-radius:50%; font-size:13px; font-weight:800; }.public-ai-head strong { display:block; font-size:14px; }.public-ai-head small { display:block; margin-top:2px; color:#d8f6ff; font-size:9px; }.public-ai-close { width:25px; height:25px; padding:0; color:#e4f5ff; border:0; background:transparent; cursor:pointer; font-size:20px; line-height:1; }
+    .public-ai-body { padding:13px; }.public-ai-greeting { margin:0 0 10px; color:#315b89; font-size:12px; line-height:1.65; }.public-ai-suggestions { display:flex; flex-wrap:wrap; gap:6px; }.public-ai-suggestions button { padding:5px 8px; color:#2670be; border:1px solid #c7e1f6; border-radius:4px; background:#f4faff; font-size:11px; cursor:pointer; }.public-ai-suggestions button:hover { color:#fff; border-color:#2878ce; background:#2878ce; }.public-ai-form { display:flex; gap:6px; margin-top:12px; }.public-ai-form input { min-width:0; flex:1; height:32px; padding:0 9px; color:#315b89; border:1px solid #bfdaf1; border-radius:4px; outline:0; font-size:12px; }.public-ai-form input:focus { border-color:#2580d3; box-shadow:0 0 0 3px rgba(37,128,211,.12); }.public-ai-form button { width:39px; color:#fff; border:0; border-radius:4px; background:#1674cc; cursor:pointer; font-size:16px; }.public-ai-form button:hover { background:#105dae; }.public-ai-result { min-height:18px; margin:8px 0 0; color:#66839f; font-size:11px; line-height:1.5; }
+    .public-ai-trigger { display:flex; align-items:center; gap:9px; min-height:48px; padding:6px 15px 6px 7px; color:#fff; border:0; border-radius:24px; background:linear-gradient(112deg,#1468c8,#15999d); box-shadow:0 8px 20px rgba(12,93,165,.3); cursor:pointer; }.public-ai-trigger:hover { filter:brightness(1.06); }.public-ai-trigger-mark { display:grid; width:36px; height:36px; place-items:center; color:#176cc5; border-radius:50%; background:#fff; font-size:14px; font-weight:800; }.public-ai-trigger-copy { display:flex; flex-direction:column; align-items:flex-start; gap:1px; }.public-ai-trigger-copy strong { font-size:13px; }.public-ai-trigger-copy small { color:#d7f7f5; font-size:9px; }
+    .toast { position:fixed; right:26px; bottom:26px; transform:translateY(100px); opacity:0; padding:13px 18px; color:white; border-radius:6px; background:#123d78; box-shadow:0 10px 24px rgba(6,43,85,.28); transition:.25s ease; font-size:14px; }.toast.show { transform:translateY(0); opacity:1; }
+    /* 首屏工作台：主导航优先，资讯退居次级信息，整体在桌面视口中居中。 */
+    body { min-height:100vh; display:flex; align-items:center; }
+    .shell { width:min(1420px,calc(100% - 96px)); margin:0 auto; }
+    .masthead { min-height:78px; padding:15px 28px 13px; border-radius:8px; }
+    .masthead h1 { font-size:26px; }
+    .masthead p { margin-top:5px; font-size:10px; }
+    .status { right:28px; top:31px; font-size:12px; }
+    .system-nav { height:52px; margin:10px 0 7px; border:0; border-radius:7px; background:#0f55aa; box-shadow:0 5px 14px rgba(24,84,157,.14); }
+    .system-nav button { color:#dbeeff; border-right:1px solid rgba(255,255,255,.18); padding:0 14px; background:transparent; font-size:16px; letter-spacing:1px; }
+    .system-nav button:hover { color:white; background:rgba(255,255,255,.12); }
+    .system-nav button.active { color:white; background:#196dcc; box-shadow:inset 0 -3px 0 #6bd4df; }
+    .system-nav button.active::after { content:none; }
+    .ticker { height:29px; margin-top:0; grid-template-columns:92px 1fr 48px; border-color:#d6e4f2; border-radius:4px; background:transparent; box-shadow:none; }
+    .ticker-label { flex-direction:row; align-items:center; padding:0 11px; color:#5e7894; background:#eef5fb; }
+    .ticker-label strong { font-size:11px; font-weight:700; letter-spacing:0; }
+    .ticker-label span { display:none; }
+    .newsline { padding:0 12px; color:#6d849c; font-size:10px; }
+    .newsline b { color:#4c6f92; font-weight:600; }
+    .newsline i { width:3px; height:3px; margin:0 12px 1px; background:#99bad8; }
+    .more { color:#6f91b2; border-left-color:#dce9f4; background:transparent; font-size:10px; font-weight:600; }
+    .framework { min-height:58px; margin-top:8px; padding:6px 12px; grid-template-columns:154px repeat(4,1fr); }
+    .framework-title { gap:8px; padding-left:5px; font-size:14px; }
+    .framework-mark { width:31px; height:31px; border-radius:5px; font-size:13px; }
+    .frame-item { padding:4px 11px 3px 16px; }
+    .frame-item em { font-size:14px; }
+    .frame-item strong { margin-top:0; font-size:12px; }
+    .frame-item small { margin-top:1px; font-size:10px; line-height:1.3; }
+    .workspace { grid-template-columns:254px minmax(510px,1fr) 254px; gap:12px; margin-top:8px; }
+    .panel { min-height:402px; }
+    .core-top { min-height:60px; padding:12px 20px 9px; }
+    .diagram { height:306px; margin:0 15px; }
+    .ring { width:268px; height:268px; border-width:12px; }
+    .ring::after { inset:9px; }
+    .core-box { width:170px; padding:16px 10px 13px; border-radius:25px; }
+    .core-symbol { width:34px; height:34px; margin-bottom:6px; font-size:16px; }
+    .core-box strong { font-size:17px; }
+    .core-box span { margin-top:5px; font-size:10px; }
+    .node { width:62px; height:62px; border-width:2px; font-size:14px; }
+    .node.n1 { top:2px; left:calc(50% - 31px); }
+    .node.n2 { top:69px; right:calc(50% - 163px); }
+    .node.n3 { right:calc(50% - 133px); bottom:2px; }
+    .node.n4 { bottom:2px; left:calc(50% - 133px); }
+    .node.n5 { top:69px; left:calc(50% - 163px); }
+    .node-tip { padding:3px 7px; font-size:9px; }
+    .tip1 { top:54px; left:calc(50% - 41px); }.tip2 { top:94px; right:calc(50% - 241px); }.tip3 { right:calc(50% - 196px); bottom:59px; }.tip4 { bottom:59px; left:calc(50% - 196px); }.tip5 { top:94px; left:calc(50% - 241px); }
+    .core-footer { min-height:36px; padding:9px 14px; font-size:10px; }
+    .resources-inner { min-height:74px; }
+    .resource-title { padding-left:22px; }
+    .resource-title::after { right:-14px; border-top-width:37px; border-bottom-width:37px; border-left-width:14px; }
+    .resource-title strong { font-size:17px; }.resource-title span { margin-top:4px; font-size:8px; }
+    .resource-grid { grid-template-columns:repeat(5,1fr); gap:6px; padding:9px 20px 9px 27px; }
+    .resource { min-height:28px; border-radius:4px; font-size:14px; }
+    @media(max-width:1280px) { .shell { width:calc(100% - 56px); } .workspace { grid-template-columns:232px minmax(450px,1fr) 232px; } }
+    @media(max-height:800px) { .shell { width:min(1360px,calc(100% - 80px)); } .masthead { min-height:54px; padding-top:7px; padding-bottom:5px; } .masthead h1 { font-size:21px; } .masthead p { margin-top:1px; } .status { top:19px; } .system-nav { height:38px; margin:4px 0 3px; } .system-nav button { font-size:13px; } .ticker { height:22px; } .framework { min-height:40px; margin-top:4px; padding-top:2px; padding-bottom:2px; } .framework-mark { width:24px; height:24px; } .frame-item { padding-top:0; padding-bottom:0; } .workspace { margin-top:4px; } .panel { min-height:365px; } .panel-head { height:39px; } .province-tabs { padding-top:5px; padding-bottom:3px; } .org { min-height:48px; padding:5px; } .org + .org { margin-top:11px; } .org + .org::before { height:11px; } .core-top { min-height:49px; padding-top:8px; padding-bottom:5px; } .diagram { height:285px; display:grid; place-items:center; } .ring { width:284px; height:284px; border-width:12px; } .core-box { width:176px; padding:17px 10px 14px; } .core-symbol { width:35px; height:35px; font-size:17px; } .core-box strong { font-size:17px; } .node { width:64px; height:64px; font-size:14px; } .node.n1 { top:0; left:calc(50% - 32px); } .node.n2 { top:65px; right:calc(50% - 176px); } .node.n3 { right:calc(50% - 144px); bottom:0; } .node.n4 { bottom:0; left:calc(50% - 144px); } .node.n5 { top:65px; left:calc(50% - 176px); } .tip1 { top:51px; left:calc(50% - 42px); } .tip2 { top:89px; right:calc(50% - 257px); } .tip3 { right:calc(50% - 209px); bottom:60px; } .tip4 { bottom:60px; left:calc(50% - 209px); } .tip5 { top:89px; left:calc(50% - 257px); } .core-footer { min-height:30px; padding-top:6px; padding-bottom:6px; } .entry-list { padding-top:6px; padding-bottom:6px; } .entry { min-height:34px; margin-bottom:3px; } .resources { margin-top:4px; } .resources-inner { min-height:50px; } .resource-title::after { border-top-width:25px; border-bottom-width:25px; } .resource-grid { padding-top:4px; padding-bottom:4px; } .resource { min-height:20px; } }
+    /* 首屏最终比例：两侧信息栏适度扩展，中间五维图作为视觉中心。 */
+    .workspace { grid-template-columns:280px minmax(460px,1fr) 280px; }
+    /* 导航使用页面全局字族；选中态仅强调文字与底部状态线。 */
+    .system-nav button { display:flex; align-items:center; justify-content:center; position:relative; font-family:inherit; font-weight:700; letter-spacing:0; line-height:1; }
+    .system-nav button::before { content:none; }
+    .system-nav button:hover { background:rgba(255,255,255,.08); }
+    .system-nav button.active { color:#fff; background:rgba(141,180,216,.28); box-shadow:none; }
+    .system-nav button.active::after { content:""; position:absolute; right:calc(50% - 18px); bottom:7px; left:calc(50% - 18px); height:2px; border-radius:1px; background:#fff; }
+
+    /* 当日资讯采用双份内容无缝循环，避免切换时的视觉跳动。 */
+    .newsline { padding:0; }
+    .news-track { display:flex; align-items:center; width:max-content; min-width:100%; height:100%; white-space:nowrap; animation:news-marquee 26s linear infinite; }
+    .news-track:hover { animation-play-state:paused; }
+    .news-item { display:inline-flex; align-items:center; flex:none; }
+    .news-item b { font-weight:600; }
+    .news-separator { flex:none; width:3px; height:3px; margin:0 12px; border-radius:50%; background:#99bad8; }
+    @keyframes news-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    @media (prefers-reduced-motion:reduce) { .news-track { animation:none; } }
+
+    /* 图谱回调为紧凑比例，保留均衡留白并维持整体垂直居中。 */
+    .diagram { min-height:372px; }
+    .ring { width:322px; height:322px; border-width:13px; }
+    .ring::after { inset:9px; }
+    .core-box { width:194px; padding:19px 12px 16px; border-radius:28px; }
+    .core-symbol { width:39px; height:39px; margin-bottom:6px; font-size:18px; }
+    .core-box strong { font-size:18px; }
+    .core-box span { font-size:10px; }
+    .node { width:70px; height:70px; font-size:15px; }
+    .node.n1 { top:calc(50% - 166px); left:50%; transform:translateX(-50%); }
+    .node.n2 { top:calc(50% - 66px); right:calc(50% - 173px); }
+    .node.n3 { right:calc(50% - 120px); bottom:calc(50% - 166px); }
+    .node.n4 { bottom:calc(50% - 166px); left:calc(50% - 120px); }
+    .node.n5 { top:calc(50% - 66px); left:calc(50% - 173px); }
+    .tip1 { top:calc(50% - 130px); left:calc(50% - 41px); }
+    .tip2 { top:calc(50% - 43px); right:calc(50% - 244px); }
+    .tip3 { right:calc(50% - 190px); bottom:calc(50% - 121px); }
+    .tip4 { bottom:calc(50% - 121px); left:calc(50% - 190px); }
+    .tip5 { top:calc(50% - 43px); left:calc(50% - 244px); }
+    /* 视觉重心下移，避免图谱下方形成过大的空白。 */
+    .ring, .core-box, .node-tip { transform:translateY(12px); }
+    .node.n1 { transform:translate(-50%, 12px); }
+    .node.n2, .node.n3, .node.n4, .node.n5 { transform:translateY(12px); }
+    .node:hover, .node.selected { transform:translateY(12px) scale(1.07); }
+    .node.n1:hover, .node.n1.selected { transform:translate(-50%, 12px) scale(1.07); }
+    @media(max-width:1280px) { .workspace { grid-template-columns:250px minmax(430px,1fr) 250px; } }
+
+    /* 首屏标题区增高，强化页面主标题的识别度。 */
+    .masthead { min-height:96px; padding:18px 28px 16px; }
+    .masthead h1 { font-size:28px; }
+    .masthead p { margin-top:7px; }
+    .status { top:40px; }
+
+    /* 五维工作推进中枢：以中心统筹、五向协同和闭环反馈呈现工作关系。 */
+    .diagram {
+      --diagram-blue:#1d70c9;
+      --diagram-deep:#0c4c96;
+      --diagram-teal:#008b88;
+      --diagram-cyan:#48c1d0;
+      min-height:450px;
+      height:450px;
+      isolation:isolate;
+      background:
+        linear-gradient(90deg,rgba(39,118,202,.045) 1px,transparent 1px),
+        linear-gradient(rgba(39,118,202,.045) 1px,transparent 1px),
+        radial-gradient(circle at 50% 51%,rgba(95,190,238,.18),transparent 43%);
+      background-size:28px 28px,28px 28px,100% 100%;
+    }
+    .diagram::before {
+      content:"";
+      position:absolute;
+      z-index:0;
+      width:360px;
+      height:360px;
+      border:1px solid rgba(54,142,222,.26);
+      border-radius:50%;
+      box-shadow:0 0 0 14px rgba(100,181,237,.08),0 0 0 28px rgba(100,181,237,.035);
+    }
+    .diagram::after {
+      content:"五维协同推进";
+      position:absolute;
+      z-index:1;
+      bottom:12px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:3px 9px;
+      color:#78a2c9;
+      border:1px solid #d5e8f7;
+      border-radius:12px;
+      background:rgba(255,255,255,.9);
+      font-size:9px;
+      letter-spacing:1px;
+      white-space:nowrap;
+    }
+    .ring { display:none; }
+    .diagram-network {
+      position:absolute;
+      z-index:1;
+      inset:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+    }
+    .network-polygon-halo { fill:none; stroke:#9bcbea; stroke-width:2.4; stroke-linejoin:round; opacity:.06; filter:drop-shadow(0 0 2px rgba(73,155,234,.18)); }
+    .network-polygon { fill:rgba(38,118,208,.028); stroke:#91bddf; stroke-width:.9; stroke-dasharray:7 10; stroke-linejoin:round; opacity:.8; }
+    .network-spoke { stroke:#b0d1eb; stroke-width:.85; stroke-linecap:round; opacity:.58; }
+    .network-flow { fill:none; stroke:#78acd7; stroke-width:1.1; stroke-dasharray:8 13; stroke-linecap:round; stroke-linejoin:round; opacity:.58; }
+    .network-flow-halo { fill:none; stroke:#9acbed; stroke-width:2.5; stroke-dasharray:8 13; stroke-linecap:round; stroke-linejoin:round; opacity:.045; filter:none; }
+    .network-flow-glint { fill:none; stroke:#68b8ed; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:48 300; opacity:.82; filter:drop-shadow(0 0 3px rgba(98,181,236,.42)); }
+    .network-node { fill:#f3faff; stroke:#a3c9e8; stroke-width:.9; opacity:.58; }
+    @keyframes flow-dash { to { stroke-dashoffset:-50; } }
+    .node {
+      z-index:3;
+      width:118px;
+      height:76px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 9px;
+      color:#174e8b;
+      border:1px solid #a9d1f1;
+      border-radius:7px;
+      background:rgba(255,255,255,.96);
+      box-shadow:0 5px 14px rgba(23,95,164,.10);
+      font:inherit;
+      text-align:left;
+      transition:border-color .2s ease,background .2s ease,box-shadow .2s ease;
+    }
+    .node:hover,.node.selected {
+      color:#fff;
+      border-color:#1476c7;
+      background:linear-gradient(135deg,#1c78cf,#0d59aa);
+      box-shadow:0 9px 20px rgba(21,95,172,.25);
+    }
+    .node-index {
+      display:grid;
+      flex:0 0 27px;
+      place-items:center;
+      width:27px;
+      height:27px;
+      color:#2377c8;
+      border-radius:50%;
+      background:#e8f4ff;
+      font-size:11px;
+      font-weight:800;
+    }
+    .node:hover .node-index,.node.selected .node-index { color:#1769b5; background:#fff; }
+    .node-copy { min-width:0; }
+    .node-name { display:block; font-size:15px; font-weight:800; line-height:1.15; }
+    .node-meta { display:block; overflow:hidden; margin-top:4px; color:#7191b2; font-size:9px; line-height:1.15; white-space:nowrap; text-overflow:ellipsis; }
+    .node:hover .node-meta,.node.selected .node-meta { color:#d8edff; }
+    .node-state { position:absolute; top:7px; right:7px; width:6px; height:6px; border-radius:50%; background:#23b49d; box-shadow:0 0 0 3px rgba(35,180,157,.13); }
+    .node.selected .node-state { background:#fff; box-shadow:0 0 0 3px rgba(255,255,255,.18); }
+    .node.n1 { top:9px; left:50%; transform:translateX(-50%); }
+    .node.n2 { top:132px; right:54px; transform:none; }
+    .node.n3 { right:119px; bottom:43px; transform:none; }
+    .node.n4 { bottom:43px; left:118px; transform:none; }
+    .node.n5 { top:132px; left:53px; transform:none; }
+    .node.n1:hover,.node.n1.selected { transform:translateX(-50%) scale(1.035); }
+    .node.n2:hover,.node.n2.selected,.node.n3:hover,.node.n3.selected,.node.n4:hover,.node.n4.selected,.node.n5:hover,.node.n5.selected { transform:scale(1.035); }
+    .node-tip { display:none; }
+    .core-box {
+      z-index:4;
+      width:184px;
+      padding:14px 12px 12px;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.75);
+      border-radius:11px;
+      background:linear-gradient(145deg,#0d4c9a,#1479c9 63%,#10979c);
+      box-shadow:0 14px 26px rgba(16,79,151,.25),inset 0 1px 0 rgba(255,255,255,.24);
+    }
+    .core-box::before {
+      content:"统筹引擎";
+      display:inline-block;
+      margin-bottom:6px;
+      padding:2px 6px;
+      color:#ccefff;
+      border:1px solid rgba(255,255,255,.27);
+      border-radius:9px;
+      font-size:9px;
+      letter-spacing:1px;
+    }
+    .core-symbol {
+      position:absolute;
+      top:14px;
+      right:12px;
+      display:grid;
+      width:28px;
+      height:28px;
+      margin:0;
+      color:#156ec0;
+      background:#fff;
+      font-size:12px;
+    }
+    .core-box strong { display:block; color:#fff; font-size:18px; line-height:1.3; }
+    .core-box span { margin-top:4px; color:#ccecff; font-size:10px; }
+    @media(max-width:1280px) {
+      .node { width:108px; }
+      .node.n2 { right:61px; }
+      .node.n5 { left:61px; }
+      .node.n3 { right:125px; }
+      .node.n4 { left:125px; }
+    }
+    /* 目标体系状态复用原五维图，仅展开中枢和节点中的目标信息。 */
+    .diagram.goal-state::after { content:"总体目标引领　·　五维分解推进"; }
+    .diagram.goal-state .network-polygon-halo { opacity:.075; }
+    .diagram.goal-state .network-polygon { fill:rgba(24,116,210,.06); stroke:#80b2dc; }
+    .diagram.goal-state .network-spoke { stroke:#9bc4e5; stroke-width:1; }
+    .diagram.goal-state .network-flow { stroke:#659dcc; opacity:.64; }
+    .diagram.goal-state .network-flow-halo { stroke:#8ebfe5; opacity:.06; }
+    .diagram.goal-state .node { width:142px; height:92px; display:grid; grid-template-columns:23px minmax(0,1fr); grid-template-rows:auto auto; align-items:start; column-gap:6px; row-gap:3px; padding:8px; }
+    .diagram.goal-state .node-copy { align-self:center; }
+    .diagram.goal-state .node.n1 { top:2px; }
+    .diagram.goal-state .node.n2 { top:112px; right:25px; }
+    .diagram.goal-state .node.n3 { right:82px; bottom:22px; }
+    .diagram.goal-state .node.n4 { bottom:22px; left:82px; }
+    .diagram.goal-state .node.n5 { top:112px; left:25px; }
+    .diagram.goal-state .node-index { flex-basis:23px; width:23px; height:23px; font-size:10px; }
+    .diagram.goal-state .node-name { font-size:14px; }
+    .diagram.goal-state .node-meta { margin-top:2px; }
+    .node-targets { display:none; }
+    .diagram.goal-state .node-targets { display:grid; grid-column:1 / -1; grid-template-columns:1fr; align-self:start; gap:3px; position:static; margin-top:0; padding-top:5px; border-top:1px solid #dcecf8; }
+    .node-target { color:#5e7e9a; font-size:8px; line-height:1.25; text-align:left; }
+    .node-target b { margin-right:3px; color:#1476c7; font-size:8px; }
+    .diagram.goal-state .node:hover .node-targets,.diagram.goal-state .node.selected .node-targets { border-top-color:rgba(255,255,255,.42); }
+    .diagram.goal-state .node:hover .node-target,.diagram.goal-state .node.selected .node-target { color:#e3f3ff; }
+    .diagram.goal-state .node:hover .node-target b,.diagram.goal-state .node.selected .node-target b { color:#fff; }
+    .diagram.goal-state .core-box { width:244px; padding:14px 12px 12px; text-align:center; }
+    .diagram.goal-state .core-box::before { content:"总体目标"; }
+    .diagram.goal-state .core-box > strong { display:block; margin:5px 0 5px; color:#fff; font-size:21px; line-height:1.2; text-align:center; white-space:nowrap; }
+    .diagram.goal-state .core-box > #coreFocus { display:none; }
+    .core-targets { display:none; }
+    .diagram.goal-state .core-targets { display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-top:2px; }
+    .core-target { min-width:0; padding:7px 5px 6px; border:1px solid rgba(255,255,255,.28); border-radius:5px; background:rgba(255,255,255,.10); text-align:center; }
+    .core-target strong { display:block; color:#fff; font-size:17px; line-height:1.15; }
+    .core-target span { display:block; margin-top:3px; color:#d7f0ff; font-size:8px; line-height:1.25; }
+    .diagram.goal-state .core-symbol { top:11px; right:10px; width:24px; height:24px; font-size:10px; }
+    @media(max-width:1280px) { .diagram.goal-state .node { width:130px; } .diagram.goal-state .node.n2 { right:30px; } .diagram.goal-state .node.n5 { left:30px; } .diagram.goal-state .node.n3 { right:90px; } .diagram.goal-state .node.n4 { left:90px; } .node-target { font-size:7px; } }
+    @media(prefers-reduced-motion:reduce) { .network-flow,.network-flow-halo,.network-flow-glint { animation:none; } .node { transition:none; } }
+    .mechanism-empty-state { display:flex; min-height:324px; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:24px 16px; color:#8298af; text-align:center; }.mechanism-empty-icon { position:relative; display:grid; width:48px; height:39px; place-items:center; color:#4a88c7; border:1.5px solid #74a8db; border-radius:5px; background:#f4faff; }.mechanism-empty-icon::before { position:absolute; top:-6px; width:20px; height:8px; content:""; border:1.5px solid #74a8db; border-bottom:0; border-radius:4px 4px 0 0; background:#f4faff; }.mechanism-empty-icon::after { position:absolute; width:17px; height:2px; content:""; background:#74a8db; }.mechanism-empty-icon i { display:none; }.mechanism-empty-state strong { margin-top:3px; color:#426c98; font-size:14px; }.mechanism-empty-state p { max-width:190px; margin:0; color:#8298af; font-size:11px; line-height:1.7; }
+    .diagram.developing-state { display:flex; align-items:center; justify-content:center; min-height:450px; height:450px; flex:0 0 450px; padding:24px; }.global-developing { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:#8298af; text-align:center; }.global-developing-icon { position:relative; display:grid; width:52px; height:43px; place-items:center; color:#4a88c7; border:1.5px solid #74a8db; border-radius:5px; background:#f4faff; }.global-developing-icon::before { position:absolute; top:-6px; width:22px; height:8px; content:""; border:1.5px solid #74a8db; border-bottom:0; border-radius:4px 4px 0 0; background:#f4faff; }.global-developing-icon::after { position:absolute; width:18px; height:2px; content:""; background:#74a8db; }.global-developing strong { margin-top:3px; color:#426c98; font-size:15px; }.global-developing p { max-width:220px; margin:0; color:#8298af; font-size:12px; line-height:1.7; }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <h1>浙江省人工智能高质量发展工作图谱</h1>
+      <p>WORKFLOW ATLAS　·　FIVE-DIMENSION GOVERNANCE</p>
+      <div class="status"><span class="pulse"></span>工作态势实时更新</div>
+    </header>
+
+    <nav class="system-nav" aria-label="主导航">
+      <button class="active" data-system="目标体系">目标体系</button><button data-system="政策体系">政策体系</button><button data-system="任务体系">任务体系</button><button data-system="统计监测">统计监测</button>
+    </nav>
+
+    <section class="ticker" aria-label="当日资讯" role="link" tabindex="0" data-news-library>
+      <div class="ticker-label"><strong>当日资讯</strong><span id="today"></span></div>
+      <div class="newsline" aria-live="off"><div class="news-track" id="newsTrack"></div></div>
+      <button class="more" data-action="资讯库">更多&nbsp;›</button>
+    </section>
+
+    <section class="workspace">
+      <aside class="panel">
+        <div class="panel-head"><h2>省市一体</h2><span>统筹推进</span></div>
+        <div class="province-tabs"><button class="active" data-tab="组织架构">组织架构</button><button data-tab="一市一方案">一市一方案</button><button data-tab="机制专题">机制＋专题</button></div>
+        <div class="org-list" id="orgList">
+          <div class="org"><span class="ordinal">1</span><div><strong>组长：刘捷省长</strong><small>省级高位统筹、重大事项决策</small></div></div>
+          <div class="org"><span class="ordinal">2</span><div><strong>副组长：徐文光、何中伟</strong><small>统筹协调、重点任务推进</small></div></div>
+          <div class="org"><span class="ordinal">3</span><div><strong>人工智能办公室</strong><small>省发展改革委牵头，负责日常调度</small></div></div>
+          <div class="org assist"><span class="ordinal">4</span><div><strong>专家智库协同支撑</strong><small>决策咨询、技术评估、专题研究</small></div></div>
+        </div>
+      </aside>
+
+      <section class="panel core">
+        <div class="core-top"><div><h2 id="coreTitle">五维工作推进中枢</h2><p id="coreDesc">目标设定　·　政策支撑　·　任务调度　·　项目推进　·　场景落地　·　监测反馈</p></div><span class="view-tag" id="viewTag">组织架构视图</span></div>
+        <div class="diagram" aria-label="五维工作推进中枢，点击维度查看工作重点">
+          <svg class="diagram-network" viewBox="0 0 568 450" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+            <polygon class="network-polygon-halo" points="284,47 453.288059901,169.994975001 388.625774908,369.005024999 179.374225092,369.005024999 114.711940099,169.994975001"></polygon>
+            <polygon class="network-polygon" points="284,47 453.288059901,169.994975001 388.625774908,369.005024999 179.374225092,369.005024999 114.711940099,169.994975001"></polygon>
+            <path class="network-spoke" d="M284 225 L284 47 M284 225 L453.288059901 169.994975001 M284 225 L388.625774908 369.005024999 M284 225 L179.374225092 369.005024999 M284 225 L114.711940099 169.994975001"></path>
+            <path class="network-flow-halo" d="M284 47 L453.288059901 169.994975001 L388.625774908 369.005024999 L179.374225092 369.005024999 L114.711940099 169.994975001 Z"></path>
+            <path class="network-flow" d="M284 47 L453.288059901 169.994975001 L388.625774908 369.005024999 L179.374225092 369.005024999 L114.711940099 169.994975001 Z"></path>
+            <path class="network-flow-glint" d="M284 47 L453.288059901 169.994975001 L388.625774908 369.005024999 L179.374225092 369.005024999 L114.711940099 169.994975001 Z"></path>
+            <circle class="network-node" cx="284" cy="47" r="4"></circle><circle class="network-node" cx="453.288059901" cy="169.994975001" r="4"></circle><circle class="network-node" cx="388.625774908" cy="369.005024999" r="4"></circle><circle class="network-node" cx="179.374225092" cy="369.005024999" r="4"></circle><circle class="network-node" cx="114.711940099" cy="169.994975001" r="4"></circle>
+          </svg>
+          <button class="node n1" data-node="算力" aria-label="算力维度，基础设施保障"><span class="node-index">01</span><span class="node-copy"><span class="node-name">算力</span><span class="node-meta">基础设施保障</span></span><span class="node-targets"><span class="node-target"><b>2026</b>总算力达200EFlops以上</span><span class="node-target"><b>2030</b>规模全国前三，云服务领先</span></span><span class="node-state"></span></button>
+          <button class="node n2" data-node="数据" aria-label="数据维度，要素供给开放"><span class="node-index">02</span><span class="node-copy"><span class="node-name">数据</span><span class="node-meta">要素供给开放</span></span><span class="node-targets"><span class="node-target"><b>2026</b>行业建成10个以上高质量数据集</span><span class="node-target"><b>2030</b>国家数据要素综合试验区</span></span><span class="node-state"></span></button>
+          <button class="node n3" data-node="模型" aria-label="模型维度，技术攻关突破"><span class="node-index">03</span><span class="node-copy"><span class="node-name">模型</span><span class="node-meta">技术攻关突破</span></span><span class="node-targets"><span class="node-target"><b>2026</b>20项核心技术，80个垂类模型</span><span class="node-target"><b>2030</b>通用人工智能技术全球领先</span></span><span class="node-state"></span></button>
+          <button class="node n4" data-node="应用" aria-label="应用维度，重点场景落地"><span class="node-index">04</span><span class="node-copy"><span class="node-name">应用</span><span class="node-meta">重点场景落地</span></span><span class="node-targets"><span class="node-target"><b>2026</b>300个场景，重点行业普及率超70%</span><span class="node-target"><b>2030</b>重点行业普及率超90%</span></span><span class="node-state"></span></button>
+          <button class="node n5" data-node="生态" aria-label="生态维度，产业协同培育"><span class="node-index">05</span><span class="node-copy"><span class="node-name">生态</span><span class="node-meta">产业协同培育</span></span><span class="node-targets"><span class="node-target"><b>2026</b>培育全球竞争力和影响力企业</span><span class="node-target"><b>2030</b>建成全球一流开源开放生态</span></span><span class="node-state"></span></button>
+          <div class="core-box"><div class="core-symbol">AI</div><strong>人工智能创新高地</strong><span id="coreFocus">总目标统筹</span><div class="core-targets"><div class="core-target"><strong>8300亿元</strong><span>2026年核心产业营收</span></div><div class="core-target"><strong>1.2万亿元</strong><span>2030年核心产业营收</span></div></div></div>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <div class="panel-head"><h2>工作入口</h2><span>快捷办理</span></div>
+        <div class="entry-list">
+          <button class="entry" data-action="任务调度"><span class="entry-num">01</span><span><strong>任务调度</strong><small>重点任务闭环管理</small></span><span class="entry-arrow">›</span></button>
+          <button class="entry" data-action="项目调度"><span class="entry-num">02</span><span><strong>项目调度</strong><small>重大项目全周期跟踪</small></span><span class="entry-arrow">›</span></button>
+          <button class="entry" data-action="平台调度"><span class="entry-num">03</span><span><strong>平台调度</strong><small>算力与公共服务平台</small></span><span class="entry-arrow">›</span></button>
+          <button class="entry" data-action="场景遴选"><span class="entry-num">04</span><span><strong>场景遴选</strong><small>应用需求征集与发布</small></span><span class="entry-arrow">›</span></button>
+          <button class="entry" data-action="会议管理"><span class="entry-num">05</span><span><strong>会议管理</strong><small>议题、纪要与督办事项</small></span><span class="entry-arrow">›</span></button>
+          <button class="entry" data-action="调研管理"><span class="entry-num">06</span><span><strong>调研管理</strong><small>专题调研成果归集</small></span><span class="entry-arrow">›</span></button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="framework" aria-label="4353工作架构">
+      <div class="framework-title"><span class="framework-mark">4353</span><span>工作机制</span></div>
+      <div class="frame-item"><em>4：四个统一</em><small>统一话语体系、统一规则体系、统一工作体系、统一责任体系</small></div>
+      <div class="frame-item"><em>3：三个一</em><small>一个专班统筹、一套机制运作、一个平台调度</small></div>
+      <div class="frame-item"><em>5：五项制度</em><small>例会制、报表制、督查制、通报制、考核制</small></div>
+      <div class="frame-item"><em>3：三个三</em><small>三级打通、三个常态化、三张清单</small></div>
+    </section>
+
+    <section class="resources" aria-label="数据资源中心"><div class="resources-inner"><div class="resource-title"><strong>数据资源中心</strong><span>DATA RESOURCE CENTER</span></div><div class="resource-grid" id="resourceGrid"></div></div></section>
+  </main>
+  <aside class="public-ai" id="publicAi" aria-label="公众智能咨询">
+    <section class="public-ai-panel" aria-live="polite">
+      <header class="public-ai-head"><div class="public-ai-brand"><span class="public-ai-mark">AI</span><div><strong>智能咨询</strong><small>PUBLIC SERVICE ASSISTANT</small></div></div><button class="public-ai-close" id="publicAiClose" type="button" aria-label="关闭智能咨询">×</button></header>
+      <div class="public-ai-body"><p class="public-ai-greeting">您好，我可以协助查询浙江省人工智能产业链相关公开信息。</p><div class="public-ai-suggestions"><button type="button" data-public-question="产业链图谱包含哪些内容？">产业链图谱内容</button><button type="button" data-public-question="如何了解人工智能相关政策？">相关政策</button></div><form class="public-ai-form" id="publicAiForm"><input id="publicAiInput" aria-label="输入咨询问题" placeholder="请输入您的问题"><button type="submit" aria-label="发送咨询问题">↑</button></form><p class="public-ai-result" id="publicAiResult"></p></div>
+    </section>
+    <button class="public-ai-trigger" id="publicAiTrigger" type="button" aria-expanded="false" aria-controls="publicAi"><span class="public-ai-trigger-mark">AI</span><span class="public-ai-trigger-copy"><strong>智能咨询</strong><small>在线服务</small></span></button>
+  </aside>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script>
+    const resources = ["政策库","任务库","项目库","场景库","资讯库","平台库","企业库","地市方案","产业链图","专家库"];
+    document.getElementById("resourceGrid").innerHTML = resources.map(x => `<button class="resource" data-action="${x}">${x}</button>`).join("");
+    const date = new Date(); document.getElementById("today").textContent = `${date.getFullYear()}/${String(date.getMonth()+1).padStart(2,"0")}/${String(date.getDate()).padStart(2,"0")}`;
+    const tabContent = {
+      "组织架构": { tag:"组织架构视图", title:"五维工作推进中枢", desc:"目标设定　·　政策支撑　·　任务调度　·　项目推进　·　场景落地　·　监测反馈", note:"统一话语体系、统一规则体系、统一工作体系、统一责任体系。", html:`<div class="org"><span class="ordinal">1</span><div><strong>组长：刘捷省长</strong><small>省级高位统筹、重大事项决策</small></div></div><div class="org"><span class="ordinal">2</span><div><strong>副组长：徐文光、何中伟</strong><small>统筹协调、重点任务推进</small></div></div><div class="org"><span class="ordinal">3</span><div><strong>人工智能办公室</strong><small>省发展改革委牵头，负责日常调度</small></div></div><div class="org assist"><span class="ordinal">4</span><div><strong>专家智库协同支撑</strong><small>决策咨询、技术评估、专题研究</small></div></div>` },
+      "一市一方案": { tag:"一市一方案视图", title:"地市协同推进矩阵", desc:"因地制宜　·　分层分类　·　重点突破　·　特色发展", note:"11个设区市结合资源禀赋和产业基础，形成差异化人工智能发展方案。", html:`<div class="org"><span class="ordinal">杭</span><div><strong>杭州：创新策源</strong><small>大模型、智能计算、具身智能</small></div></div><div class="org"><span class="ordinal">甬</span><div><strong>宁波：制造赋能</strong><small>工业智能、港航物流、智能终端</small></div></div><div class="org"><span class="ordinal">温</span><div><strong>温州：场景突破</strong><small>轻工智造、商贸服务、医疗健康</small></div></div><div class="org assist"><span class="ordinal">11</span><div><strong>全省协同推进</strong><small>形成“一市一方案、一域一特色”格局</small></div></div>` },
+      "机制专题": { tag:"机制＋专题", title:"机制＋专题", desc:"", note:"", html:`<div class="org"><span class="ordinal">A</span><div><strong>专班推进机制</strong><small>跨部门协同，解决关键堵点</small></div></div><div class="org"><span class="ordinal">B</span><div><strong>专题攻坚机制</strong><small>聚焦算力、数据、模型、应用、生态</small></div></div><div class="org"><span class="ordinal">C</span><div><strong>清单调度机制</strong><small>任务、项目、场景三张清单联动</small></div></div><div class="org assist"><span class="ordinal">D</span><div><strong>评估反馈机制</strong><small>以实绩和成效为导向动态迭代</small></div></div>` }
+    };
+    const pageRoutes = {
+      "目标体系":"pages/details.html",
+      "政策体系":"pages/policies.html",
+      "任务体系":"pages/tasks.html",
+      "统计监测":"pages/monitoring.html",
+      "项目调度":"pages/workbench.html#projects",
+      "任务调度":"pages/workbench.html#tasks",
+      "场景遴选":"pages/workbench.html#scenes",
+      "会议管理":"pages/workbench.html#meetings",
+      "调研管理":"pages/workbench.html#research",
+      "平台调度":"pages/workbench.html#platforms",
+      "政策库":"pages/policies.html",
+      "任务库":"pages/tasks.html",
+      "项目库":"pages/projects.html",
+      "场景库":"pages/scene.html",
+      "资讯库":"pages/news.html",
+      "平台库":"pages/platforms.html",
+      "专家库":"pages/experts.html",
+      "企业库":"pages/companies.html",
+      "产业链图":"https://tzxmgl.zjzwfw.gov.cn/jbosth/#/login?appCode=kgs&loginConfigId=2000015",
+      "地市方案":"pages/city-plans.html"
+    };
+    function toast(message) { const el=document.getElementById("toast"); el.textContent=`正在建设：${message}`; el.classList.add("show"); setTimeout(()=>el.classList.remove("show"),1800); }
+    function openModule(name) { const route=pageRoutes[name]; if(!route) { toast(name); return; } if(name==="产业链图") { window.open(route,"_blank","noopener,noreferrer"); return; } location.href=route; }
+    const publicAi=document.getElementById("publicAi");
+    const publicAiTrigger=document.getElementById("publicAiTrigger");
+    const publicAiInput=document.getElementById("publicAiInput");
+    const publicAiResult=document.getElementById("publicAiResult");
+    function setPublicAiOpen(open) { publicAi.classList.toggle("open",open); publicAiTrigger.setAttribute("aria-expanded",String(open)); if(open) publicAiInput.focus(); }
+    publicAiTrigger.addEventListener("click",()=>setPublicAiOpen(!publicAi.classList.contains("open")));
+    document.getElementById("publicAiClose").addEventListener("click",()=>setPublicAiOpen(false));
+    function answerPublicQuestion(question) { const text=question.trim(); if(!text) return; publicAiResult.textContent="已收到您的咨询。该公众服务入口将基于公开信息提供相关指引。"; publicAiInput.value=""; }
+    document.getElementById("publicAiForm").addEventListener("submit",event=>{ event.preventDefault(); answerPublicQuestion(publicAiInput.value); });
+    document.querySelectorAll("[data-public-question]").forEach(button=>button.addEventListener("click",()=>answerPublicQuestion(button.dataset.publicQuestion)));
+    const diagramEl=document.querySelector(".diagram");
+    const diagramDefaultHTML=diagramEl.innerHTML;
+
+    function bindDiagramInteractions() {
+      document.querySelectorAll(".node").forEach(node => node.addEventListener("click", () => {
+        const dimension = node.dataset.node;
+        if (["算力", "数据", "模型", "应用", "生态"].includes(dimension)) {
+          window.location.href = `pages/topic.html?dim=${encodeURIComponent(dimension)}`;
+          return;
+        }
+        document.querySelectorAll(".node").forEach(item => item.classList.remove("selected"));
+        node.classList.add("selected");
+        document.getElementById("coreFocus").textContent = `${dimension}维度推进中`;
+        if (window.gsap && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          gsap.fromTo(".core-box", { scale: 1 }, { scale: 1.045, duration: 0.16, yoyo: true, repeat: 1, ease: "power2.out", overwrite: "auto" });
+        }
+      }));
+    }
+
+    let diagramAmbientTimeline;
+    function animateDiagramAmbient() {
+      if (diagramAmbientTimeline) diagramAmbientTimeline.kill();
+      if (!window.gsap || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const glint = diagramEl.querySelector(".network-flow-glint");
+      const polygon = diagramEl.querySelector(".network-polygon");
+      const polygonHalo = diagramEl.querySelector(".network-polygon-halo");
+      const vertices = diagramEl.querySelectorAll(".network-node");
+      if (!glint || !polygon || !polygonHalo) return;
+      diagramAmbientTimeline = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
+      diagramAmbientTimeline
+        .to(glint, { strokeDashoffset: -700, duration: 6.2 }, 0)
+        .to(polygon, { opacity: .32, duration: 1.25, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0)
+        .to(polygonHalo, { opacity: .28, scale: 1.015, transformOrigin: "50% 50%", duration: 1.25, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0)
+        .to(vertices, { scale: 1.22, opacity: .92, transformOrigin: "50% 50%", duration: 1.1, stagger: .2, yoyo: true, repeat: 1, ease: "sine.inOut" }, .2);
+    }
+
+    function animateDiagramEntrance() {
+      if (!window.gsap || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
+      timeline
+        .fromTo(".diagram-network", { autoAlpha: 0, scale: 0.92, transformOrigin: "50% 50%" }, { autoAlpha: 1, scale: 1, duration: 0.55 })
+        .fromTo(".core-box", { autoAlpha: 0, scale: 0.8, y: 10 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.48, ease: "back.out(1.5)" }, "-=0.24")
+        .fromTo(".node", { autoAlpha: 0, scale: 0.8, y: 8 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.42, stagger: 0.07 }, "-=0.22");
+      animateDiagramAmbient();
+    }
+
+    window.addEventListener("load", animateDiagramEntrance, { once: true });
+    const cityPlanMap='<img class="map-view-image" src="assets/浙江省人工智能地市布局图_优势领域连线总图.svg" alt="浙江省人工智能地市布局图" />';
+    function animateGoalState(){
+      if(!window.gsap || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const timeline=gsap.timeline({defaults:{ease:"power2.out",overwrite:"auto"}});
+      timeline.fromTo(".diagram-network",{scale:.96,autoAlpha:.65,transformOrigin:"50% 50%"},{scale:1,autoAlpha:1,duration:.36})
+        .fromTo(".core-box",{scale:.84,autoAlpha:0},{scale:1,autoAlpha:1,duration:.36,ease:"back.out(1.35)"},0)
+        .fromTo(".core-target",{y:6,autoAlpha:0},{y:0,autoAlpha:1,duration:.3},0)
+        .fromTo(".node",{scale:.88,autoAlpha:.4},{scale:1,autoAlpha:1,duration:.36},0)
+        .fromTo(".node-target",{y:5,autoAlpha:0},{y:0,autoAlpha:1,duration:.3},0);
+      animateDiagramAmbient();
+    }
+    function restoreDiagram(){
+      if (diagramAmbientTimeline) diagramAmbientTimeline.kill();
+      diagramEl.classList.remove("map-view","goal-state","developing-state");
+      diagramEl.innerHTML=diagramDefaultHTML;
+      bindDiagramInteractions();
+    }
+    function applyCenterView(tab){
+      if(tab==="一市一方案"){
+        if (diagramAmbientTimeline) diagramAmbientTimeline.kill();
+        diagramEl.classList.remove("goal-state","developing-state");
+        diagramEl.classList.add("map-view");
+        diagramEl.innerHTML=cityPlanMap;
+        return;
+      }
+      if(tab==="机制专题"){
+        if (diagramAmbientTimeline) diagramAmbientTimeline.kill();
+        diagramEl.classList.remove("map-view","goal-state");
+        diagramEl.classList.add("developing-state");
+        diagramEl.innerHTML='<div class="global-developing" role="status"><span class="global-developing-icon" aria-hidden="true"></span><strong>正在开发</strong><p>该功能正在建设中，后续将接入正式内容。</p></div>';
+        return;
+      }
+      restoreDiagram();
+      animateDiagramEntrance();
+    }
+    function showTargetSystemView(){
+      if(diagramEl.classList.contains("map-view")) restoreDiagram();
+      diagramEl.classList.remove("map-view");
+      diagramEl.classList.add("goal-state");
+      document.getElementById("coreTitle").textContent="人工智能发展目标体系";
+      document.getElementById("coreDesc").textContent="总体目标引领　·　五维分解推进　·　分阶段达成";
+      document.getElementById("viewTag").textContent="目标体系视图";
+      animateGoalState();
+    }
+    document.querySelectorAll(".province-tabs button").forEach(btn => btn.addEventListener("click",()=>{ document.querySelectorAll(".province-tabs button").forEach(x=>x.classList.remove("active")); btn.classList.add("active"); const d=tabContent[btn.dataset.tab]; document.getElementById("orgList").innerHTML=d.html; document.getElementById("viewTag").textContent=d.tag; document.getElementById("coreTitle").textContent=d.title; document.getElementById("coreDesc").textContent=d.desc; applyCenterView(btn.dataset.tab); }));
+    document.querySelectorAll(".system-nav button").forEach(btn => btn.addEventListener("click",()=>{
+      document.querySelectorAll(".system-nav button").forEach(item=>item.classList.remove("active"));
+      btn.classList.add("active");
+      if(btn.dataset.system==="目标体系") showTargetSystemView();
+      else openModule(btn.dataset.system);
+    }));
+    bindDiagramInteractions();
+    document.querySelectorAll("[data-action]").forEach(btn=>btn.addEventListener("click",()=>openModule(btn.dataset.action)));
+    const newsLibrary=document.querySelector("[data-news-library]");
+    newsLibrary.addEventListener("click",event=>{ if(!event.target.closest(".more")) openModule("资讯库"); });
+    newsLibrary.addEventListener("keydown",event=>{ if(event.key==="Enter"||event.key===" "){ event.preventDefault(); openModule("资讯库"); } });
+    const items=["浙江省算力券申领通道开放","宁波人工智能超算中心二期建成投运","长三角人工智能协同发展对接会召开","人工智能应用场景征集工作启动"];
+    const newsMarkup=items.map((item,index)=>`<span class="news-item">${index===0?`<b>${item}</b>`:item}</span><span class="news-separator" aria-hidden="true"></span>`).join("");
+    document.getElementById("newsTrack").innerHTML=`${newsMarkup}<span class="news-separator" aria-hidden="true"></span>${newsMarkup}`;
+  </script>
+</body>
+</html>
